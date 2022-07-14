@@ -1,32 +1,28 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
+import RootNavigator from "./src/navigation";
 import Basket from "./src/screens/Basket";
 import DishDetailsScreen from "./src/screens/DishDetailsScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import OrderDetails from "./src/screens/OrderDetails";
 import OrderScreen from "./src/screens/OrdersScreen";
 import ResturantDetailsScreen from "./src/screens/ResturantDetailsScreen";
+import { Amplify } from "aws-amplify";
+import config from "./src/aws-exports";
+import { withAuthenticator } from "aws-amplify-react-native";
 
-export default function App() {
+Amplify.configure({ ...config, Analytics: { disabled: true } });
+
+function App() {
   return (
-    <View style={styles.container}>
-      {/* <HomeScreen /> */}
-      {/* <ResturantDetailsScreen /> */}
-      {/* <DishDetailsScreen /> */}
-      {/* <Basket /> */}
-      {/* <OrderScreen /> */}
-      <OrderDetails />
+    <NavigationContainer>
+      <RootNavigator />
       <StatusBar style="light" />
-    </View>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    // padding: 10,
-  },
-});
+const styles = StyleSheet.create({});
+
+export default withAuthenticator(App);

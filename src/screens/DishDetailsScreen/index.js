@@ -1,15 +1,23 @@
 import { styles } from "./styles";
-import resturants from "../../../assets/data/restaurants.json";
-import { Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-
-const dish = resturants[0].dishes[0];
+import { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { DataStore } from "aws-amplify";
+import { Dish } from "../../models";
 
 const DishDetailsScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const id = route.params?.id;
   const [quantity, setQuantity] = useState(1);
+  const [dish, setDish] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      DataStore.query(Dish, id).then(setDish);
+    }
+  }, [id]);
 
   const onMinusClick = () => {
     if (quantity > 1) {
@@ -22,6 +30,16 @@ const DishDetailsScreen = () => {
   const getTotal = () => {
     return (dish.price * quantity).toFixed(2);
   };
+
+  if (!dish) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="#0000ff"
+        style={{ flex: 1, justifyContent: "center" }}
+      />
+    );
+  }
 
   return (
     <View style={styles.page}>

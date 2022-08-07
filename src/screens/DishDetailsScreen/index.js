@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { DataStore } from "aws-amplify";
 import { Dish } from "../../models";
+import { useBasketContext } from "../../hooks/providers";
 
 const DishDetailsScreen = () => {
   const navigation = useNavigation();
@@ -12,12 +13,18 @@ const DishDetailsScreen = () => {
   const id = route.params?.id;
   const [quantity, setQuantity] = useState(1);
   const [dish, setDish] = useState(null);
+  const { addDishToBasket } = useBasketContext();
 
   useEffect(() => {
     if (id) {
       DataStore.query(Dish, id).then(setDish);
     }
   }, [id]);
+
+  const onAddToBasket = async () => {
+    await addDishToBasket(dish, quantity);
+    navigation.goBack();
+  };
 
   const onMinusClick = () => {
     if (quantity > 1) {
@@ -63,10 +70,7 @@ const DishDetailsScreen = () => {
         />
       </View>
 
-      <Pressable
-        onPress={() => navigation.navigate("Basket")}
-        style={styles.button}
-      >
+      <Pressable onPress={() => onAddToBasket()} style={styles.button}>
         <Text style={styles.btnTxt}>
           Add {quantity} to basket &#8226; ${getTotal()}
         </Text>

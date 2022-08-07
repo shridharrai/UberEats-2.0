@@ -1,23 +1,20 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import RootNavigator from "./src/navigation";
-import Basket from "./src/screens/Basket";
-import DishDetailsScreen from "./src/screens/DishDetailsScreen";
-import HomeScreen from "./src/screens/HomeScreen";
-import OrderDetails from "./src/screens/OrderDetails";
-import OrderScreen from "./src/screens/OrdersScreen";
-import ResturantDetailsScreen from "./src/screens/ResturantDetailsScreen";
 import { Amplify } from "aws-amplify";
 import config from "./src/aws-exports";
 import { withAuthenticator } from "aws-amplify-react-native";
+import AuthContextProvider from "./src/contexts/AuthContext";
 
 Amplify.configure({ ...config, Analytics: { disabled: true } });
 
 function App() {
   return (
     <NavigationContainer>
-      <RootNavigator />
+      <AuthContextProvider>
+        <RootNavigator />
+      </AuthContextProvider>
       <StatusBar style="light" />
     </NavigationContainer>
   );

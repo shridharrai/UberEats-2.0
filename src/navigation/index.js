@@ -10,13 +10,20 @@ import OrderDetails from "../screens/OrderDetails";
 import { Foundation, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import ProfileScreen from "../screens/ProfileScreen";
+import { useAuthContext } from "../hooks/providers";
 
 const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
+  const { dbUser } = useAuthContext();
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeTabs" component={HomeTabs} />
+      {dbUser ? (
+        <Stack.Screen name="HomeTabs" component={HomeTabs} />
+      ) : (
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      )}
     </Stack.Navigator>
   );
 };

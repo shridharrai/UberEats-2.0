@@ -303,7 +303,7 @@ export const schema = {
                 "quantity": {
                     "name": "quantity",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -777,5 +777,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "b8dc0671a4b23f2b7a530d25cfa7e66a"
+    "version": "6225a2c697c8242260c9d02979ce70c0"
 };

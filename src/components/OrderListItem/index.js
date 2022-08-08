@@ -1,9 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
+import { DataStore } from "aws-amplify";
+import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import { useOrderContext } from "../../hooks/providers";
 import { styles } from "./styles";
 
 const OrderListItem = ({ order }) => {
   const navigation = useNavigation();
+  const [noOfItems, setNoOfItems] = useState(0);
+  const { getOrder } = useOrderContext();
+
+  useEffect(() => {
+    getOrder(order.id).then((od) => setNoOfItems(od.dishes.length));
+  }, [order]);
 
   return (
     <Pressable
@@ -14,7 +23,9 @@ const OrderListItem = ({ order }) => {
 
       <View>
         <Text style={styles.name}>{order.Restaurant.name}</Text>
-        <Text style={{ marginVertical: 5 }}>3 items &#8226; $38.45</Text>
+        <Text style={{ marginVertical: 5 }}>
+          {noOfItems} items &#8226; ${order.total.toFixed(2)}
+        </Text>
         <Text>2 days ago &#8226; {order.status}</Text>
       </View>
     </Pressable>

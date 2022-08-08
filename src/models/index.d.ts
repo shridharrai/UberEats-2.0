@@ -76,7 +76,7 @@ export declare class Dish {
 
 export declare class OrderDish {
   readonly id: string;
-  readonly quantity: string;
+  readonly quantity: number;
   readonly Dish?: Dish | null;
   readonly orderID: string;
   readonly createdAt?: string | null;

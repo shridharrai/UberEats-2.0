@@ -4,7 +4,7 @@ import orders from "../../../assets/data/orders.json";
 
 const order = orders[0];
 
-export const OrderDetailsHeader = () => {
+export const OrderDetailsHeader = ({ order }) => {
   return (
     <View style={styles.page}>
       <Image source={{ uri: order.Restaurant.image }} style={styles.image} />

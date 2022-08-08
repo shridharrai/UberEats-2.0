@@ -24,11 +24,7 @@ const ResturantDetailsScreen = () => {
   const navigation = useNavigation();
   const id = route.params?.id;
 
-  const {
-    setResturant: setBasketResturant,
-    basket,
-    basketDishes,
-  } = useBasketContext();
+  const { setBasketResturant, basket, basketDishes } = useBasketContext();
 
   useEffect(() => {
     if (id) {

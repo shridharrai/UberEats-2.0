@@ -8,7 +8,7 @@ export const BasketContext = createContext({});
 const BasketContextProvider = ({ children }) => {
   const { dbUser } = useAuthContext();
 
-  const [resturant, setResturant] = useState(null);
+  const [resturant, setBasketResturant] = useState(null);
   const [basket, setBasket] = useState(null);
   const [basketDishes, setBasketDishes] = useState([]);
 
@@ -20,7 +20,7 @@ const BasketContextProvider = ({ children }) => {
   useEffect(() => {
     //Get the existing basket realted to logged in user and particular resturant
     DataStore.query(Basket, (b) =>
-      b.restaurantID("eq", resturant.id).userID("eq", dbUser.id)
+      b.restaurantID("eq", resturant?.id).userID("eq", dbUser?.id)
     ).then((baskets) => setBasket(baskets[0]));
   }, [resturant, dbUser]);
 
@@ -33,7 +33,6 @@ const BasketContextProvider = ({ children }) => {
   }, [basket]);
 
   const addDishToBasket = async (dish, quantity) => {
-    console.log("Add Dish ", dish, quantity);
     //Get existing basket or create the new one
     const theBasket = basket || (await createNewBasket());
 
@@ -56,7 +55,7 @@ const BasketContextProvider = ({ children }) => {
     <BasketContext.Provider
       value={{
         addDishToBasket,
-        setResturant,
+        setBasketResturant,
         resturant,
         basket,
         basketDishes,

@@ -1,5 +1,5 @@
 import { Auth, DataStore } from "aws-amplify";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { User } from "../models";
 
 export const AuthContext = createContext({});
@@ -27,3 +27,5 @@ const AuthContextProvider = ({ children }) => {
 };
 
 export default AuthContextProvider;
+
+export const useAuthContext = () => useContext(AuthContext);

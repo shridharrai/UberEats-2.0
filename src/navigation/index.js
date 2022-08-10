@@ -2,15 +2,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ResturantDetailsScreen from "../screens/ResturantDetailsScreen";
-import OrderScreen from "../screens/OrdersScreen";
 import DishDetailsScreen from "../screens/DishDetailsScreen";
 import Basket from "../screens/Basket";
 import OrdersScreen from "../screens/OrdersScreen";
 import OrderDetails from "../screens/OrderDetails";
 import { Foundation, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
 import ProfileScreen from "../screens/ProfileScreen";
-import { useAuthContext } from "../hooks/providers";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -89,7 +87,11 @@ const OrderStack = createNativeStackNavigator();
 const OrderStackNavigator = () => {
   return (
     <OrderStack.Navigator>
-      <OrderStack.Screen name="Orders" component={OrdersScreen} />
+      <OrderStack.Screen
+        name="OrdersScreen"
+        options={{ title: "Orders" }}
+        component={OrdersScreen}
+      />
       <OrderStack.Screen name="Order" component={OrderDetails} />
     </OrderStack.Navigator>
   );

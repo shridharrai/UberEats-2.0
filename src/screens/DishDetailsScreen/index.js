@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { DataStore } from "aws-amplify";
 import { Dish } from "../../models";
-import { useBasketContext } from "../../hooks/providers";
+import { useBasketContext } from "../../contexts/BasketContext";
 
 const DishDetailsScreen = () => {
   const navigation = useNavigation();

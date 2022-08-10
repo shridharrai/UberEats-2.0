@@ -1,6 +1,6 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, View } from "react-native";
 import OrderListItem from "../../components/OrderListItem";
-import { useOrderContext } from "../../hooks/providers";
+import { useOrderContext } from "../../contexts/OrderContext";
 import { styles } from "./styles";
 
 const OrderScreen = () => {

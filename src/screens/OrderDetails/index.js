@@ -1,11 +1,9 @@
 import { ActivityIndicator, FlatList } from "react-native";
-import resturants from "../../../assets/data/restaurants.json";
-import styles from "./styles";
 import BasketDishItem from "../../components/BasketDishItem";
 import { OrderDetailsHeader } from "./Header";
-import { useOrderContext } from "../../hooks/providers";
 import { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
+import { useOrderContext } from "../../contexts/OrderContext";
 
 const OrderDetails = () => {
   const { getOrder } = useOrderContext();

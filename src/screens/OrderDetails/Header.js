@@ -1,8 +1,5 @@
 import styles from "./styles";
 import { Image, Text, View } from "react-native";
-import orders from "../../../assets/data/orders.json";
-
-const order = orders[0];
 
 export const OrderDetailsHeader = ({ order }) => {
   return (

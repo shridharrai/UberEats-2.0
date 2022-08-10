@@ -1,11 +1,11 @@
-import { View, Text, TextInput, StyleSheet, Button, Alert } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Text, TextInput, Button, Alert } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import { Auth, DataStore } from "aws-amplify";
 import { User } from "../../models";
-import { useAuthContext } from "../../hooks/providers";
 import { useNavigation } from "@react-navigation/native";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Profile = () => {
   const { sub, setDbUser, dbUser } = useAuthContext();

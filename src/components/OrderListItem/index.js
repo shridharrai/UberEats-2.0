@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import { DataStore } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import { useOrderContext } from "../../hooks/providers";
+import { useOrderContext } from "../../contexts/OrderContext";
 import { styles } from "./styles";
 
 const OrderListItem = ({ order }) => {

@@ -1,7 +1,8 @@
 import { DataStore } from "aws-amplify";
-import { createContext, useEffect, useState } from "react";
-import { useAuthContext, useBasketContext } from "../hooks/providers";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Order, OrderDish } from "../models";
+import { useAuthContext } from "./AuthContext";
+import { useBasketContext } from "./BasketContext";
 
 export const OrderContext = createContext({});
 
@@ -63,3 +64,5 @@ const OrderContextProvider = ({ children }) => {
 };
 
 export default OrderContextProvider;
+
+export const useOrderContext = () => useContext(OrderContext);

@@ -1,7 +1,7 @@
 import { DataStore } from "aws-amplify";
-import { createContext, useEffect, useState } from "react";
-import { useAuthContext } from "../hooks/providers";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Basket, BasketDish } from "../models";
+import { useAuthContext } from "./AuthContext";
 
 export const BasketContext = createContext({});
 
@@ -58,6 +58,7 @@ const BasketContextProvider = ({ children }) => {
         setBasketResturant,
         resturant,
         basket,
+        setBasket,
         basketDishes,
         totalPrice,
       }}
@@ -68,3 +69,5 @@ const BasketContextProvider = ({ children }) => {
 };
 
 export default BasketContextProvider;
+
+export const useBasketContext = () => useContext(BasketContext);

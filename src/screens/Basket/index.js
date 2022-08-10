@@ -1,18 +1,18 @@
 import { styles } from "./styles";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
 import BasketDishItem from "../../components/BasketDishItem";
-import { useBasketContext, useOrderContext } from "../../hooks/providers";
 import { useNavigation } from "@react-navigation/native";
+import { useBasketContext } from "../../contexts/BasketContext";
+import { useOrderContext } from "../../contexts/OrderContext";
 
 const Basket = () => {
-  const { resturant, basketDishes, totalPrice } = useBasketContext();
+  const { resturant, basketDishes, totalPrice, setBasket } = useBasketContext();
   const { createOrder } = useOrderContext();
   const navigation = useNavigation();
 
   const onCreateOrder = async () => {
     await createOrder();
+    setBasket(null);
     navigation.goBack();
   };
 

@@ -1,7 +1,6 @@
 import {
   ActivityIndicator,
   FlatList,
-  Image,
   Pressable,
   Text,
   View,
@@ -14,7 +13,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { DataStore } from "aws-amplify";
 import { Dish, Restaurant } from "../../models";
-import { useBasketContext } from "../../hooks/providers";
+import { useBasketContext } from "../../contexts/BasketContext";
 
 const ResturantDetailsScreen = () => {
   const [resturant, setResturant] = useState(null);
